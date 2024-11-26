@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ⓐ𝐙кᗩ 𝐆ⓛ๏ⓑ𝒶𝓁</title>
+    <!-- Link ke Google Fonts untuk menggunakan font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Link ke Bootstrap CSS melalui CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="path/to/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Gunakan min-height 100vh untuk memastikan background menutupi seluruh tinggi viewport */
+            min-height: 100vh;
+            /* Tambahkan width 100% untuk memastikan lebar penuh */
+            width: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.3)
+            ),
+            url('https://cdn.pixabay.com/photo/2021/12/13/09/46/moto-bikes-6867911_1280.jpg');
+            /* Ubah background-size menjadi cover untuk memastikan gambar menutupi seluruh area */
+            background-size: cover;
+            /* Tambahkan no-repeat untuk mencegah pengulangan gambar */
+            background-repeat: no-repeat;
+            /* Gunakan center untuk memastikan gambar tetap di tengah */
+            background-position: center center;
+            /* Gunakan fixed untuk efek parallax dan mencegah scrolling background */
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            padding: 0;
+            /* Tambahkan overflow-x hidden untuk mencegah horizontal scrolling */
+            overflow-x: hidden;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* Tambahkan CSS untuk html untuk memastikan full coverage */
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Tambahkan media query untuk perangkat mobile */
+        @media (max-width: 768px) {
+            body {
+                /* Nonaktifkan fixed attachment pada mobile untuk performa lebih baik */
+                background-attachment: scroll;
+            }
+        }
+
+        /* Tambahkan fallback untuk browser yang tidak mendukung background-attachment: fixed */
+        @supports (-webkit-overflow-scrolling: touch) {
+            body {
+                background-attachment: scroll;
+            }
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #00c6ff, #007bff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+        }
+
+        .category-section {
+            margin-top: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .category-title {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Hover animation styles for product cards */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            cursor: pointer;  /* Make the cursor a pointer to indicate interactivity */
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);  /* Slightly zoom in */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);  /* Add shadow for depth */
+            filter: brightness(1.1);  /* Make the card a bit brighter */
+        }
+
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;  /* Smooth image scale transition */
+        }
+
+        .product-card:hover .card-img-top {
+            transform: scale(1.1);  /* Slight zoom-in on the image */
+        }
+
+        .card-body h5, .card-body p {
+            color: black;
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        /* Centered Title Section */
+        .center-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            display: block;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px; /* Optional, adds space between cards */
+        }
+
+        /* Ensure product cards are responsive */
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Variasi 1: Scaling */
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Variasi 2: Rotating slightly */
+        .car-card:hover {
+            transform: rotate(2deg);
+        }
+
+        /* Variasi 3: Kombinasi efek */
+        .car-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animasi untuk card mobil */
+        .cars .card {
+            transition: all 0.3s ease-in-out;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .cars .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .cars .card img {
+            transition: all 0.3s ease-in-out;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cars .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .cars .card-body {
+            transition: all 0.3s ease;
+        }
+
+        .cars .card:hover .card-body {
+            background-color: #f8f9fa;
+        }
+
+        .cars .card:hover .btn {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cars .btn {
+            transition: all 0.3s ease;
+        }
+
+        /* Styling untuk navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Styling untuk cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border: none;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Styling untuk buttons */
+        .btn {
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* Styling untuk section titles */
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #e6e6e6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            border-radius: 2px;
+        }
+
+        /* Styling untuk footer */
+        footer {
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.8));
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 50px 0;
+        }
+
+        footer .btn {
+            margin: 10px;
+            min-width: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        footer .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Animasi untuk product images */
+        .card-img-top {
+            transition: all 0.5s ease;
+            transform-origin: center;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        /* Styling untuk search bar */
+        .form-control {
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        .stat-item {
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .nav-tabs .nav-link {
+            color: #495057;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .tab-content {
+            background: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            margin-top: -20px;
+        }
+
+        .carousel-item {
+            height: 600px;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            filter: brightness(0.7);
+        }
+
+        .carousel-caption {
+            bottom: 50%;
+            transform: translateY(50%);
+            padding: 0 20%;
+        }
+
+        .carousel-caption h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .carousel-caption p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        .carousel-caption .btn {
+            animation: zoomIn 1s;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+        }
+
+        /* Featured Categories Styling */
+        .category-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .category-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Animasi untuk Featured Categories */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-card {
+            animation: fadeInUp 0.6s;
+        }
+
+        /* Update Product Card Styling */
+        .product-card {
+            margin-bottom: 30px;
+        }
+
+        .product-card .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .product-card .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .product-card .card-body {
+            padding: 20px;
+        }
+
+        .product-card .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-card .btn-group {
+            width: 100%;
+            gap: 10px;
+        }
+
+        /* Tambahkan Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tambahkan animasi hover yang lebih menarik untuk card */
+        .card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tambahkan efek parallax untuk gambar card */
+        .card-img-top {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1) translateZ(20px);
+        }
+
+        /* Tambahkan animasi untuk tombol */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Tambahkan animasi untuk navbar saat scroll */
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 5px 0;
+        }
+
+        /* Tambahkan animasi untuk category title */
+        .category-title {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            transition: 0.5s ease-in-out;
+        }
+
+        .category-title:hover::before {
+            left: 0;
+        }
+
+        /* Tambahkan animasi loading skeleton */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Add these new styles for search animation */
+        .search-highlight {
+            animation: searchPulse 1s ease-in-out;
+            transform-origin: center;
+        }
+
+        .search-no-match {
+            animation: searchFadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes searchPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+            }
+        }
+
+        @keyframes searchFadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+        }
+
+        /* Loading indicator for search */
+        .search-loading {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        /* Style for search results counter */
+        .search-results-counter {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: none;
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-links a {
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .newsletter-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        /* Responsivitas untuk mobile */
+        @media (max-width: 768px) {
+            /* Navbar adjustments */
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .navbar-toggler {
+                padding: 0.4rem;
+            }
+
+            /* Card adjustments */
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .card-img-top {
+                height: 200px;
+                object-fit: cover;
+            }
+            
+            .card-body {
+                padding: 1rem;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+            
+            .card-text {
+                font-size: 0.9rem;
+            }
+            
+            /* Button adjustments */
+            .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Grid adjustments */
+            .col-md-3 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Footer adjustments */
+            .footer-section {
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            /* Profile modal adjustments */
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            
+            .modal-body {
+                padding: 1rem;
+            }
+            
+            /* Category cards */
+            .category-card {
+                margin-bottom: 1rem;
+            }
+            
+            /* Search bar */
+            .search-form {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            
+            /* Hero section */
+            .carousel-caption {
+                padding: 1rem;
+            }
+            
+            .carousel-caption h1 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Additional mobile optimizations */
+        @media (max-width: 576px) {
+            /* Smaller text for very small devices */
+            .card-title {
+                font-size: 1rem;
+            }
+            
+            .card-text {
+                font-size: 0.8rem;
+            }
+            
+            /* Stack buttons vertically */
+            .card-body .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Adjust modal profile picture */
+            #profilePicture {
+                width: 100px;
+                height: 100px;
+            }
+            
+            /* Adjust feature cards */
+            .feature-card {
+                padding: 1rem;
+            }
+            
+            .feature-card i {
+                font-size: 2rem;
+            }
+            
+            /* Newsletter form */
+            .newsletter-form .input-group {
+                flex-direction: column;
+            }
+            
+            .newsletter-form .btn {
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            /* Remove hover effects on mobile */
+            .card:hover {
+                transform: none !important;
+            }
+            
+            /* Increase touch targets */
+            .nav-link,
+            .btn,
+            .dropdown-item {
+                padding: 0.8rem 1rem;
+            }
+            
+            /* Add active state feedback */
+            .btn:active {
+                transform: scale(0.98);
+            }
+        }
+
+        /* Loading spinner adjustments for mobile */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Improve scrolling performance */
+        * {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
+    <!-- Tambahkan JavaScript untuk handling mobile interactions -->
+    <script>
+    // Improve mobile menu behavior
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+                navbarCollapse.classList.remove('show');
+            }
+        });
+        
+        // Close mobile menu when clicking a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarCollapse.classList.remove('show');
+            });
+        });
+    });
+
+    // Optimize image loading for mobile
+    document.addEventListener('DOMContentLoaded', function() {
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        }
+    });
+
+    // Add pull-to-refresh functionality
+    let touchstartY = 0;
+    document.addEventListener('touchstart', e => {
+        touchstartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchmove', e => {
+        const touchY = e.touches[0].clientY;
+        const touchDiff = touchY - touchstartY;
+        
+        if (window.scrollY === 0 && touchDiff > 70) {
+            e.preventDefault();
+            location.reload();
+        }
+    });
+    </script>
+</head>
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/kece/AZKA GLOBAL.png" alt="Logo" style="width: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#motorcycle">Motorcycle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fashion">Fashion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shoes">Shoes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cars">Cars</a>
+                    </li>
+                    <!-- Wishlist Menu Item -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="wishlist.html">Wishlist</a>
+                    </li>
+                </ul>
+                <!-- Input pencarian produk -->
+                <form class="d-flex" role="search" onsubmit="event.preventDefault(); searchProducts();">
+                    <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search" id="searchInput">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <!-- Button Signup di bagian kanan -->
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Utama dengan Judul Tengah -->
+    <div class="container mt-5 center-title">
+        <h1 style="color: black;">Ⓐ𝐙кᗩ 𝐆ⓛ๏ⓑ𝒶𝓁</h1>
+        <p>Jelajahi berbagai kategori produk terbaik di sini!</p>
+    </div>
+
+    <!-- Motorcycle Section -->
+    <div id="motorcycle" class="category-section">
+        <h2 class="category-title">Motorcycle</h2>
+        <div class="row">
+            <div class="col-md-3 product-card" id="product1">
+                <div class="card">
+                    <img src="/kece/azka.jpg" class="card-img-top" alt="Produk 1">
+                    <div class="card-body">
+                        <h5 class="card-title">KAWASAKI NINJA H2R</h5>
+                        <p class="card-text">Kawasaki Ninja H2R adalah motor sport supercharged.</p>
+                        <a href="https://www.olx.co.id/item/brand-new-kawasaki-h2-supercharged-1000cc-nik-2022-tt-r1cbrz1000v4-iid-918708987" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.kawasaki-motor.co.id/id-id/sepeda-motor/ninja/hypersport/ninja-h2/2022-ninja-h2#specs" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist dengan desain menarik -->
+                        <button class="btn btn-danger wishlist-btn" onclick="checkLoginAndAddToWishlist('KAWASAKI NINJA H2R', '/kece/azka.jpg')">
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+            <div class="col-md-3 product-card" id="product2">
+                <div class="card">
+                    <img src="/kece/bmw-s-1000-rr-89167.webp" class="card-img-top" alt="Produk 2">
+                    <div class="card-body">
+                        <h5 class="card-title">BMW s1000rr</h5>
+                        <p class="card-text">BMW s1000rr adalah motor sport unggulan dari bmw yang tidak diragukan lagi.</p>
+                        <a href="https://www.olx.co.id/item/yamaha-yzf-r1-50th-anniv-fptt-zx25r-r6-cbr1000-mv-avsuta-z800-z900-iid-927797771" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.bmw-motorrad.co.id/en/models/sport/s1000rr/technicaldata.html#/section-technical-data" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('BMW s1000rr', '/kece/bmw-s-1000-rr-89167.webp')">   <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <div class="col-md-3 product-card" id="product3">
+                <div class="card">
+                    <img src="/kece/merah.jpg" class="card-img-top" alt="Produk 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ducati Panigale V4</h5>
+                        <p class="card-text">Ducati Panigale V4 adalah motor sport ikonik dengan performa tinggi dan desain yang memukau.</p>
+                        <a href="https://www.olx.co.id/item/ducati-panigale-v4-sp2-30-anniversario-916-iid-926731310" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.zigwheels.co.id/motor-baru/ducati/panigale-v4/spesifikasi/" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Ducati Panigale V4', '/kece/merah.jpg')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+              
+            <div class="col-md-3 product-card" id="product4">
+                <div class="card">
+                    <img src="/kece/suzuki-hayabusa-color-694906.avif" class="card-img-top" alt="Produk 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Suzuki Hayabusa</h5>
+                        <p class="card-text">Suzuki Hayabusa dikenal dengan kecepatan luar biasa dan mesin 1340cc yang sangat bertenaga.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=suzuki+hayabusa" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.bmw-motorrad.co.id/en/models/sport/s1000rr/technicaldata.html#/section-technical-data" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Suzuki Hayabusa', '/kece/suzuki-hayabusa-color-694906.avif')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <!-- Additional Products -->
+            <div class="col-md-3 product-card" id="product5">
+                <div class="card">
+                    <img src="/kece/image mahal.webp" class="card-img-top" alt="Produk 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda CBR1000RR</h5>
+                        <p class="card-text">Honda CBR1000RR adalah motor sport dengan performa tangguh dan presisi tinggi.</p>
+                        <a href="https://www.olx.co.id/item/honda-cbr-1000-cbr1000-nik-2015-racefit-full-paper-tt-ninjar1r6zx10-iid-925711228" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.mpmhondajatim.com/berita/desain-eksklusif-ini-spesifikasi-hingga-harga-honda-cbr-1000rr-r" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Honda CBR1000RR', '/kece/image mahal.webp')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <div class="col-md-3 product-card" id="product6">
+                <div class="card">
+                    <img src="/kece/galung.webp" class="card-img-top" alt="Produk 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Yamaha YZF-R1</h5>
+                        <p class="card-text">Yamaha YZF-R1 adalah motor sport legendaris dengan performa tinggi.</p>
+                        <a href="https://www.olx.co.id/item/for-sale-yamaha-yzf-r1m-silver-blue-carbon-2015-iid-927439020" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://yamahamotorsports.com/models/yzf-r1" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Yamaha YZF-R1', '/kece/galung.webp')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <div class="col-md-3 product-card" id="product7">
+                <div class="card">
+                    <img src="/kece/zx gg.jpg" class="card-img-top" alt="Produk 7">
+                    <div class="card-body">
+                        <h5 class="card-title">Kawasaki ZX25R</h5>
+                        <p class="card-text">Kawasaki ZX25R, motor sport dengan teknologi canggih dan desain aerodinamis.</p>
+                        <a href="https://www.olx.co.id/item/kawasaki-zx25r-qs-low-odo-iid-925821541" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.kawasaki-motor.co.id/id-id/sepeda-motor/ninja/supersport/ninja-zx-25r" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Kawasaki ZX25R', '/kece/zx gg.jpg')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <div class="col-md-3 product-card" id="product8">
+                <div class="card">
+                    <img src="/kece/S0-essai-suzuki-gsx-r-1000-r-sportive-de-route-597546.jpg" class="card-img-top" alt="Produk 8">
+                    <div class="card-body">
+                        <h5 class="card-title">Suzuki GSX-R1000</h5>
+                        <p class="card-text">Suzuki GSX-R1000 adalah motor sport dengan mesin powerful dan kestabilan terbaik.</p>
+                        <a href="https://www.olx.co.id/item/suzuki-gsx-r150-2018-iid-927660356" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://suzukicycles.com/sportbike/2024/gsx-r1000r" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <!-- Tombol Add to Wishlist berwarna merah -->
+                        <button class="btn btn-danger" onclick="checkLoginAndAddToWishlist('Suzuki GSX-R1000', '/kece/pppppp.webp')"> <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
+    <!-- Tambahkan CDN untuk ikon Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Scripts -->
+    <script>
+        // Replace the existing searchProducts function with this enhanced version
+        function searchProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const searchLoading = document.querySelector('.search-loading');
+            const resultsCounter = document.querySelector('.search-results-counter');
+            let matchCount = 0;
+
+            // Show loading indicator
+            searchLoading.style.display = 'block';
+            resultsCounter.style.display = 'none';
+
+            // Simulate search delay for better UX
+            setTimeout(() => {
+                const sections = document.querySelectorAll('.category-section');
+                let found = false;
+
+                // Remove previous animations
+                document.querySelectorAll('.search-highlight, .search-no-match').forEach(el => {
+                    el.classList.remove('search-highlight', 'search-no-match');
+                });
+
+                // Loop through each section
+                sections.forEach(section => {
+                    const sectionTitle = section.querySelector('.category-title').innerText.toLowerCase();
+                    const products = section.querySelectorAll('.product-card');
+                    let sectionHasMatch = false;
+
+                    // Loop through products in this section
+                    products.forEach(product => {
+                        const card = product.querySelector('.card');
+                        const title = product.querySelector('.card-title').innerText.toLowerCase();
+                        const description = product.querySelector('.card-text').innerText.toLowerCase();
+
+                        // Enhanced search logic with multiple conditions and synonyms
+                        const searchTerms = input.split(' ').filter(term => term.length > 0);
+                        const matchesSearch = searchTerms.some(term => {
+                            // Direct matches
+                            if (title.includes(term) || description.includes(term) || sectionTitle.includes(term)) {
+                                return true;
+                            }
+
+                            // Category-specific synonyms and related terms
+                            const categoryMatches = {
+                                'cars': ['auto', 'mobil', 'vehicle', 'car', 'supercar', 'luxury'],
+                                'motorcycle': ['bike', 'motor', 'cycle', 'motorbike', 'sepeda motor'],
+                                'fashion': ['clothes', 'clothing', 'pakaian', 'baju', 'wear', 'apparel'],
+                                'shoes': ['footwear', 'sepatu', 'sneakers', 'boots', 'sandals']
+                            };
+
+                            // Check if search term matches any category synonyms
+                            for (const [category, synonyms] of Object.entries(categoryMatches)) {
+                                if (synonyms.includes(term) && sectionTitle.includes(category)) {
+                                    return true;
+                                }
+                            }
+
+                            // Brand-specific matches (add more as needed)
+                            const brandMatches = {
+                                'ferrari': ['italian', 'supercar', 'sports car'],
+                                'bmw': ['german', 'luxury car', 'bavarian'],
+                                'nike': ['sneakers', 'sports shoes', 'athletic'],
+                                'adidas': ['sneakers', 'sports shoes', 'athletic']
+                            };
+
+                            // Check brand matches
+                            for (const [brand, related] of Object.entries(brandMatches)) {
+                                if ((title.includes(brand) || description.includes(brand)) && 
+                                    related.some(r => term.includes(r))) {
+                                    return true;
+                                }
+                            }
+
+                            return false;
+                        });
+
+                        if (matchesSearch || input === '') {
+                            product.style.display = '';
+                            card.classList.add('search-highlight');
+                            sectionHasMatch = true;
+                            found = true;
+                            matchCount++;
+                        } else {
+                            card.classList.add('search-no-match');
+                            setTimeout(() => {
+                                product.style.display = 'none';
+                            }, 500);
+                        }
+                    });
+
+                    // Show/hide entire section based on matches
+                    section.style.display = sectionHasMatch || input === '' ? '' : 'none';
+                });
+
+                // Update results counter
+                searchLoading.style.display = 'none';
+                resultsCounter.style.display = 'block';
+                resultsCounter.textContent = input === '' ? '' : `${matchCount} results found`;
+
+                // Show/hide no results message
+                const existingMessage = document.getElementById('noResultsMessage');
+                if (!found && input !== '') {
+                    if (!existingMessage) {
+                        const message = document.createElement('div');
+                        message.id = 'noResultsMessage';
+                        message.className = 'alert alert-info text-center mt-3 animate__animated animate__fadeIn';
+                        message.innerHTML = `
+                            <i class="fas fa-search me-2"></i>
+                            No products found matching "${input}"
+                            <div class="mt-2">
+                                <small>Try adjusting your search terms or browse our categories</small>
+                                <div class="mt-2">
+                                    <strong>Suggested searches:</strong>
+                                    <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="suggestedSearch('cars')">Cars</button>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="suggestedSearch('motorcycle')">Motorcycles</button>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="suggestedSearch('fashion')">Fashion</button>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="suggestedSearch('shoes')">Shoes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        document.querySelector('.container').appendChild(message);
+                    }
+                } else if (existingMessage) {
+                    existingMessage.remove();
+                }
+            }, 300);
+        }
+
+        // Add suggested search function
+        function suggestedSearch(term) {
+            document.getElementById('searchInput').value = term;
+            searchProducts();
+        }
+
+        // Add real-time search with debounce
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(searchProducts, 300);
+        });
+
+        // Add event listener for form submission
+        document.querySelector('form[role="search"]').addEventListener('submit', function(e) {
+            e.preventDefault();
+            searchProducts();
+        });
+
+        // Add these elements to the search form
+        document.querySelector('form[role="search"]').insertAdjacentHTML('beforeend', `
+            <div class="search-loading"></div>
+            <div class="search-results-counter"></div>
+        `);
+    </script>
+
+
+    <!-- Tambahkan script Bootstrap untuk modal -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+    <!-- Fashion Section -->
+<div id="fashion" class="category-section">
+    <h2 class="category-title">Fashion</h2>
+    <div class="row">
+        <!-- Fashion Item 1 -->
+        <div class="col-md-3 product-card" id="fashion1">
+            <div class="card">
+                <img src="/kece/t-shirt.jpg" class="card-img-top" alt="Fashion Item 1">
+                <div class="card-body">
+                    <h5 class="card-title">T-shirt Oversized Graphic</h5>
+                    <p class="card-text">T-shirt oversized dengan desain grafis yang keren, cocok untuk gaya santai atau street style.</p>
+                    <a href="https://www.tokopedia.com/search?st=product&q=T-shirt+Oversized+Graphic" class="btn btn-dark" target="_blank">Beli</a>
+                    <!-- Add Wishlist Button -->
+                    <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('T-shirt Oversized Graphic', '/kece/t-shirt.jpg')">
+                        <i class="bi bi-heart-fill"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fashion Item 2 -->
+        <div class="col-md-3 product-card" id="fashion2">
+            <div class="card">
+                <img src="/kece/jacket.jpg" class="card-img-top" alt="Fashion Item 2">
+                <div class="card-body">
+                    <h5 class="card-title">Jaket Bomber Kulit</h5>
+                    <p class="card-text">Jaket bomber kulit dengan aksen ritsleting dan detail yang elegan Memberikan kesan stylish.</p>
+                    <a href="https://www.tokopedia.com/search?st=product&q=jaket+bomber+kulit" class="btn btn-dark" target="_blank">Beli</a>
+                    <!-- Add Wishlist Button -->
+                    <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Jaket Bomber Kulit', '/kece/jacket.jpg')">
+                        <i class="bi bi-heart-fill"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fashion Item 3 -->
+        <div class="col-md-3 product-card" id="fashion3">
+            <div class="card">
+                <img src="/kece/celana.webp" class="card-img-top" alt="Fashion Item 3">
+                <div class="card-body">
+                    <h5 class="card-title">Celana Panjang Cargo</h5>
+                    <p class="card-text">Celana cargo dengan banyak kantong praktis, Ideal untuk aktivitas outdoor dan gaya streetwear.</p>
+                    <a href="https://www.tokopedia.com/search?st=product&q=celana+panjang+kargo" class="btn btn-dark" target="_blank">Beli</a>
+                    <!-- Add Wishlist Button -->
+                    <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Celana Panjang Cargo', '/kece/celana.webp')">
+                        <i class="bi bi-heart-fill"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fashion Item 4 -->
+        <div class="col-md-3 product-card" id="fashion4">
+            <div class="card">
+                <img src="/kece/busuk.webp" class="card-img-top" alt="Fashion Item 4">
+                <div class="card-body">
+                    <h5 class="card-title">celana jeans casual</h5>
+                    <p class="card-text">celana jeans casual dengan desain modern, Pilihan tepat untuk gaya kasual.</p>
+                    <a href="https://www.tokopedia.com/search?st=product&q=Sneakers+high+top" class="btn btn-dark" target="_blank">Beli</a>
+                    <!-- Add Wishlist Button -->
+                    <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('celana jeans casual', '/kece/busuk.webp')">
+                        <i class="bi bi-heart-fill"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+     <!-- Shoes Section (Ganti Favorite menjadi Shoes) -->
+    <div id="shoes" class="category-section">
+        <h2 class="category-title">Shoes</h2>
+        <div class="row">
+            <!-- Shoes 1 -->
+            <div class="col-md-3 product-card" id="shoes1">
+                <div class="card">
+                    <img src="/kece/nike air max 97.jpg" class="card-img-top" alt="Shoes 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Nike Air Max</h5>
+                        <p class="card-text">Nike Air Max memberikan kenyamanan dan desain ikonik dan mewah.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=nike+air+max" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Nike Air Max', '/kece/nike air max 97.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 2 -->
+            <div class="col-md-3 product-card" id="shoes2">
+                <div class="card">
+                    <img src="/kece/adidas maha.jpg" class="card-img-top" alt="Shoes 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Adidas Ultraboost</h5>
+                        <p class="card-text">Adidas Ultraboost dengan teknologi terbaik untuk kenyamanan maksimal.</p>
+                        <a href="https://www.tokopedia.com/sneakersdept/sepatu-lari-pria-adidas-ultraboost-22-gx5459-original-40-5-2b965?extParam=ivf%3Dfalse%26keyword%3Dadidas+ultraboost%26search_id%3D202411151402180093630424D1A4057ZFD%26src%3Dsearch" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Adidas Ultraboost', '/kece/adidas maha.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 3 -->
+            <div class="col-md-3 product-card" id="shoes3">
+                <div class="card">
+                    <img src="/kece/adidas_sepatu_adidas_nmd_r1_gz9261_full01_orwyj2mi.webp" class="card-img-top" alt="Shoes 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Adidas NMD</h5>
+                        <p class="card-text">Adidas NMD, sepatu dengan desain modern dan teknologi inovatif maksimal.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=adidas+nmd" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Adidas NMD', '/kece/adidas_sepatu_adidas_nmd_r1_gz9261_full01_orwyj2mi.webp')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 4 -->
+            <div class="col-md-3 product-card" id="shoes4">
+                <div class="card">
+                    <img src="/kece/Sepatu-Sneaker-Suede-XL.avif" class="card-img-top" alt="Shoes 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Puma Suede</h5>
+                        <p class="card-text">Puma Suede, sepatu klasik dengan desain retro yang tetap stylish dan nyaman.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=puma+suede" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Puma Suede', '/kece/Sepatu-Sneaker-Suede-XL.avif')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 5 -->
+            <div class="col-md-3 product-card" id="shoes5">
+                <div class="card">
+                    <img src="/kece/AIR+FORCE+1+'07.png" class="card-img-top" alt="Shoes 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Nike Air Force 1</h5>
+                        <p class="card-text">Nike Air Force 1, sepatu klasik yang tetap populer dengan desain simple dan nyaman.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=nike+air+force+1" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Nike Air Force 1', '/kece/AIR+FORCE+1+\'07.png')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 6 -->
+            <div class="col-md-3 product-card" id="shoes6">
+                <div class="card">
+                    <img src="/kece/hai.jpg" class="card-img-top" alt="Shoes 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Reebok Classic Leather</h5>
+                        <p class="card-text">Reebok Classic Leather, sepatu dengan desain retro dan kenyamanan maksimal.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=reebok+classic+leather" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Reebok Classic Leather', '/kece/hai.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 7 -->
+            <div class="col-md-3 product-card" id="shoes7">
+                <div class="card">
+                    <img src="/kece/under.jpg" class="card-img-top" alt="Shoes 7">
+                    <div class="card-body">
+                        <h5 class="card-title">Under Armour HOVR Phantom</h5>
+                        <p class="card-text">Under Armour HOVR Phantom, sepatu olahraga dengan teknologi pelindung yang nyaman.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=under+armour+hovr+phantom" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Under Armour HOVR Phantom', '/kece/under.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes 8 -->
+            <div class="col-md-3 product-card" id="shoes8">
+                <div class="card">
+                    <img src="/kece/new.jpg" class="card-img-top" alt="Shoes 8">
+                    <div class="card-body">
+                        <h5 class="card-title">New Balance 990v5</h5>
+                        <p class="card-text">New Balance 990v5, sepatu lari dengan kualitas dan kenyamanan yang luar biasa.</p>
+                        <a href="https://www.tokopedia.com/search?st=product&q=new+balance+990v5" class="btn btn-dark" target="_blank">Beli</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('New Balance 990v5', '/kece/new.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToWishlist(shoeName, shoeImage) {
+            alert(shoeName + " has been added to your wishlist.");
+            // You can implement further functionality here, like adding to local storage or sending to a backend
+        }
+    </script>
+
+      <!-- Cars Section -->
+    <div id="cars" class="category-section cars">
+        <h2 class="category-title">Cars</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4"> <!-- Use Bootstrap grid system for better responsiveness -->
+            
+            <!-- Car 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/download.jpg" class="card-img-top" alt="Ferrari 488 GTB">
+                    <div class="card-body">
+                        <h5 class="card-title">Ferrari 488 GTB</h5>
+                        <p class="card-text">Ferrari 488 GTB adalah mobil sport mewah dengan performa tinggi.</p>
+                        <a href="https://www.olx.co.id/item/ferrari-488-gtb-2019-rosso-corsa-iid-927920326" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.ferrari.com/en-EN/auto/ferrari-488-gtb" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Ferrari 488 GTB', '/kece/download.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/Aventador-SVJ5-500x333.avif" class="card-img-top" alt="Lamborghini Aventador">
+                    <div class="card-body">
+                        <h5 class="card-title">Lamborghini Aventador</h5>
+                        <p class="card-text">Lamborghini Aventador, mobil sport dengan desain ikonik dan performa luar biasa.</p>
+                        <a href="https://www.olx.co.id/item/lamborghini-aventador-50-anniversario-lp720-4-yellow-on-black-2014-iid-927730681" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.lamborghini.com/en-en/models/aventador" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Lamborghini Aventador', '/kece/Aventador-SVJ5-500x333.avif')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/2024_mercedes-benz_s-class_sedan_amg-s-63-e-performance_fq_oem_1_1280.avif" class="card-img-top" alt="Mercedes-Benz S-Class">
+                    <div class="card-body">
+                        <h5 class="card-title">Mercedes-Benz S-Class</h5>
+                        <p class="card-text">Mercedes-Benz S-Class adalah simbol kemewahan dengan teknologi dan performa tinggi.</p>
+                        <a href="https://www.olx.co.id/item/mercedes-benz-cla45-s-2022-2023-km-2rb-antik-mercy-cla45-cla-45-iid-928161376" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.mercedes-benz.co.id/s-class/" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Mercedes-Benz S-Class', '/kece/2024_mercedes-benz_s-class_sedan_amg-s-63-e-performance_fq_oem_1_1280.avif')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 4 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/mobil.jpg" class="card-img-top" alt="McLaren Artura Elite">
+                    <div class="card-body">
+                        <h5 class="card-title">McLaren Artura Elite</h5>
+                        <p class="card-text">McLaren Artura Elite, mobil sport ikonik dengan desain modern dan performa luar biasa.</p>
+                        <a href="https://www.olx.co.id/item/mclaren-artura-2023-elite-flux-green-iid-927921071" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.mercedes-benz.co.id/s-class/" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('McLaren Artura Elite', '/kece/mobil.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 5 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/bmw-m4-cls-limited-edition-resmi-dirilis-cuma-ada-dua-di-indonesia98.webp" class="card-img-top" alt="BMW M4">
+                    <div class="card-body">
+                        <h5 class="card-title">BMW M4</h5>
+                        <p class="card-text">BMW M4, mobil sport dengan performa luar biasa dan desain tajam.</p>
+                        <a href="https://www.olx.co.id/item/audi-r8-v8-coupe-2010-white-iid-927973001" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.audi.co.id/sea/web/id/models/r8/r8-coupe.html" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('BMW M4', '/kece/bmw-m4-cls-limited-edition-resmi-dirilis-cuma-ada-dua-di-indonesia98.webp')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 6 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/jamet.jpg" class="card-img-top" alt="Audi R8 V10">
+                    <div class="card-body">
+                        <h5 class="card-title">Audi R8 V10</h5>
+                        <p class="card-text">Audi R8 V10, mobil sport mewah dengan mesin 10-silinder yang memukau.</p>
+                        <a href="https://www.olx.co.id/item/audi-r8-v10-2024-exotic-sport-car-iid-928481624" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.audi.com/en/models/r8/r8-v10.html" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Audi R8 V10', '/kece/jamet.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 7 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/2020-aston-martin-db11.jpg" class="card-img-top" alt="Aston Martin DB11">
+                    <div class="card-body">
+                        <h5 class="card-title">Aston Martin DB11</h5>
+                        <p class="card-text">Aston Martin DB11, mobil mewah dengan performa dan kenyamanan yang luar biasa.</p>
+                        <a href="https://www.olx.co.id/item/aston-martin-db11-v8-2022-iid-927905813" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://astonmartinworks.com/models/db11/" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Aston Martin DB11', '/kece/2020-aston-martin-db11.jpg')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car 8 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/kece/911.webp" class="card-img-top" alt="Porsche 911 GT3">
+                    <div class="card-body">
+                        <h5 class="card-title">Porsche 911 GT3</h5>
+                        <p class="card-text">Porsche 911 GT3, kendaraan legendaris dengan performa balap yang mengagumkan.</p>
+                        <a href="https://www.olx.co.id/item/porsche-911-gt3-2022-iid-927906022" class="btn btn-dark" target="_blank">Beli</a>
+                        <a href="https://www.porsche.com/international/models/911/911-gt3-models/911-gt3/" class="btn btn-secondary" target="_blank">Spesifikasi</a>
+                        <button class="btn btn-danger mt-2" onclick="checkLoginAndAddToWishlist('Porsche 911 GT3', '/kece/911.webp')"> 
+                            <i class="bi bi-heart-fill"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+     <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>Hubungi Kami:</p>
+            <div class="d-flex justify-content-center">
+                <!-- WhatsApp Link -->
+                <a href="https://wa.me/6282176804064" class="btn btn-success mx-2" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <!-- Facebook Link -->
+                <a href="https://www.facebook.com/iwan.irwanto.524?mibextid=ZbWKwL" class="btn btn-primary mx-2" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com/iwan.irwanto.524/" class="btn btn-danger mx-2" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+
+            <!-- Logo Merek Produk -->
+            <div class="mt-4">
+                <p>........................................................................................................................................................................................................................................................................................</p>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <!-- Logo Ferrari -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/kue-removebg.png" alt="Ferrari" style="height: 115px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo Lamborghini -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/lamborghini-removebg-preview.png" alt="Lamborghini" style="height: 115px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo Mercedes -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/images_mar-removebg-preview.png" alt="Mercedes-Benz" style="height: 115px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo McLaren -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/images_by_uuk-removebg-preview.png" alt="McLaren" style="height: 100px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo BMW -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/BMW.svg_-1024x1024-removebg-preview.png" alt="BMW" style="height: 100px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo Audi -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/audi_busuk-removebg-preview.png" alt="Audi" style="height: 100px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo Aston Martin -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/aston-martin-new-logo-removebg-preview.png" alt="Aston Martin" style="height: 100px; width: auto; object-fit: contain;">
+                    </a>
+                    <!-- Logo Porsche -->
+                    <a href="#" class="mx-3">
+                        <img src="/kece/rusa-removebg-preview.png" alt="Porsche" style="height: 100px; width: auto; object-fit: contain;">
+                    </a>
+                </div>
+            </div>
+
+            <p class="mt-3">&copy; 2024 Ⓐ𝐙кᗩ 𝐆ⓛ๏ⓑ𝒶𝓁. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Font Awesome Icons (untuk WhatsApp, Facebook, dan Instagram) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <!-- Modal Sign Up -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="signupModalLabel">Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="signupForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-dark">Full Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label text-dark">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-dark">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-dark">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label text-dark">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update the navbar to show user info when logged in -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    
+    if (userName && userEmail) {
+        // Update navbar to show user info
+        const navbarNav = document.querySelector('#navbarNav .navbar-nav');
+        const signUpBtn = document.querySelector('.btn-primary[data-bs-toggle="modal"]');
+        
+        if (signUpBtn) {
+            signUpBtn.remove(); // Remove sign up button
+        }
+        
+        // Add user dropdown menu
+        const userDropdown = document.createElement('li');
+        userDropdown.className = 'nav-item dropdown';
+        userDropdown.innerHTML = `
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user"></i> ${userName}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="#" onclick="showProfile()"><i class="fas fa-user-circle"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        `;
+        navbarNav.appendChild(userDropdown);
+    }
+});
+
+// Update the signup form handler
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Password Mismatch',
+            text: 'Password and Confirmation Password do not match!'
+        });
+        return;
+    }
+
+    // Save user data with password (hashed in a real application)
+    const signupDate = new Date().toLocaleDateString();
+    const currentLogin = new Date().toLocaleString();
+    
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userPhone', phone);
+    localStorage.setItem('memberSince', signupDate);
+    localStorage.setItem('lastLogin', currentLogin);
+    localStorage.setItem('userPassword', btoa(password)); // Basic encoding (not secure for production)
+    localStorage.setItem('twoFactorEnabled', 'false');
+
+    // Close modal and show success message
+    const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+    modal.hide();
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Welcome to Azka Global, ' + name + '!',
+        showConfirmButton: false,
+        timer: 2000
+    }).then(() => {
+        window.location.reload();
+    });
+});
+
+// Add new function for password change
+function changePassword() {
+    Swal.fire({
+        title: 'Change Password',
+        html: `
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" id="currentPassword" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" id="newPassword" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" class="form-control">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Change Password',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+            const current = document.getElementById('currentPassword').value;
+            const newPass = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmNewPassword').value;
+
+            if (!current || !newPass || !confirm) {
+                Swal.showValidationMessage('All fields are required');
+                return false;
+            }
+
+            // Check if current password matches
+            const storedPassword = atob(localStorage.getItem('userPassword') || '');
+            if (current !== storedPassword) {
+                Swal.showValidationMessage('Current password is incorrect');
+                return false;
+            }
+
+            if (newPass !== confirm) {
+                Swal.showValidationMessage('New passwords do not match');
+                return false;
+            }
+
+            return { newPassword: newPass };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Save new password
+            localStorage.setItem('userPassword', btoa(result.value.newPassword));
+            Swal.fire({
+                icon: 'success',
+                title: 'Password Changed Successfully!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+}
+
+// Add 2FA toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const twoFactorToggle = document.getElementById('twoFactorAuth');
+    if (twoFactorToggle) {
+        // Set initial state
+        twoFactorToggle.checked = localStorage.getItem('twoFactorEnabled') === 'true';
+
+        twoFactorToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Show confirmation dialog for enabling 2FA
+                Swal.fire({
+                    title: 'Enable Two-Factor Authentication?',
+                    text: 'This will add an extra layer of security to your account',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, enable 2FA',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.setItem('twoFactorEnabled', 'true');
+                        Swal.fire({
+                            icon: 'success',
+                            title: '2FA Enabled!',
+                            text: 'Two-factor authentication has been enabled for your account.',
+                            timer: 2000
+                        });
+                    } else {
+                        this.checked = false;
+                        localStorage.setItem('twoFactorEnabled', 'false');
+                    }
+                });
+            } else {
+                localStorage.setItem('twoFactorEnabled', 'false');
+                Swal.fire({
+                    icon: 'info',
+                    title: '2FA Disabled',
+                    text: 'Two-factor authentication has been disabled.',
+                    timer: 2000
+                });
+            }
+        });
+    }
+});
+
+// Update showProfile function to include security info
+function showProfile() {
+    const userData = {
+        name: localStorage.getItem('userName') || 'Guest User',
+        email: localStorage.getItem('userEmail') || 'No email set',
+        phone: localStorage.getItem('userPhone') || 'Not set',
+        memberSince: localStorage.getItem('memberSince') || new Date().toLocaleDateString(),
+        lastLogin: localStorage.getItem('lastLogin') || new Date().toLocaleString(),
+        profilePic: localStorage.getItem('profilePicture') || 'https://via.placeholder.com/150',
+        language: localStorage.getItem('language') || 'en',
+        twoFactorEnabled: localStorage.getItem('twoFactorEnabled') === 'true'
+    };
+
+    // Update existing profile fields
+    // ... (keep existing profile update code) ...
+
+    // Update security tab information
+    document.getElementById('lastLogin').textContent = userData.lastLogin;
+    document.getElementById('twoFactorAuth').checked = userData.twoFactorEnabled;
+
+    const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+    profileModal.show();
+}
+
+// Update logout to save last login
+function logout() {
+    Swal.fire({
+        title: 'Are you sure you want to logout?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, logout',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Save last login before clearing data
+            const lastLogin = localStorage.getItem('lastLogin');
+            
+            // Clear user session data
+            const keysToKeep = ['userPassword', 'twoFactorEnabled'];
+            const savedData = {};
+            
+            keysToKeep.forEach(key => {
+                savedData[key] = localStorage.getItem(key);
+            });
+            
+            localStorage.clear();
+            
+            // Restore saved data
+            keysToKeep.forEach(key => {
+                if (savedData[key]) {
+                    localStorage.setItem(key, savedData[key]);
+                }
+            });
+            
+            // Restore last login
+            localStorage.setItem('lastLogin', lastLogin);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Logged out successfully!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+    });
+}
+</script>
+
+<!-- Add SweetAlert2 for better alerts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Enhanced Profile Modal with better styling -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-primary text-white" style="background: linear-gradient(45deg, #007bff, #00c6ff);">
+                <h5 class="modal-title" id="profileModalLabel">
+                    <i class="fas fa-user-circle me-2"></i>User Profile
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Left Column - Profile Picture and Basic Info -->
+                    <div class="col-md-4 text-center border-end">
+                        <div class="position-relative d-inline-block mb-4">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle mb-3 shadow" 
+                                 alt="Profile Picture" id="profilePicture" 
+                                 style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #fff;">
+                            <button class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle"
+                                    onclick="triggerProfilePicUpload()" style="width: 35px; height: 35px;">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="profilePicInput" hidden accept="image/*" onchange="handleProfilePicChange(event)">
+                        </div>
+                        <h4 id="profileName" class="mb-1 fw-bold"></h4>
+                        <p id="profileEmail" class="text-muted mb-2"></p>
+                        <span class="badge bg-gradient-success px-3 py-2 rounded-pill">Premium Member</span>
+                        
+                        <!-- Activity Stats -->
+                        <div class="d-flex justify-content-around mt-4 text-center">
+                            <div class="stat-item">
+                                <h5 class="mb-0" id="wishlistCount">0</h5>
+                                <small class="text-muted">Wishlist</small>
+                            </div>
+                            <div class="stat-item">
+                                <h5 class="mb-0" id="orderCount">0</h5>
+                                <small class="text-muted">Orders</small>
+                            </div>
+                            <div class="stat-item">
+                                <h5 class="mb-0" id="reviewCount">0</h5>
+                                <small class="text-muted">Reviews</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Detailed Information -->
+                    <div class="col-md-8">
+                        <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="personal-tab" data-bs-toggle="tab" href="#personal" role="tab">
+                                    <i class="fas fa-user me-2"></i>Personal Info
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="security-tab" data-bs-toggle="tab" href="#security" role="tab">
+                                    <i class="fas fa-shield-alt me-2"></i>Security
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="preferences-tab" data-bs-toggle="tab" href="#preferences" role="tab">
+                                    <i class="fas fa-cog me-2"></i>Preferences
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content p-3" id="profileTabsContent">
+                            <!-- Personal Info Tab -->
+                            <div class="tab-pane fade show active" id="personal" role="tabpanel">
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Email</label>
+                                    <input type="email" class="form-control" id="profileEmailInput" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Member Since</label>
+                                    <input type="text" class="form-control" id="memberSince" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Security Tab -->
+                            <div class="tab-pane fade" id="security" role="tabpanel">
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Last Login</label>
+                                    <p class="mb-0" id="lastLogin"></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Two-Factor Authentication</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="twoFactorAuth">
+                                        <label class="form-check-label" for="twoFactorAuth">Enable 2FA</label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-primary mb-2" onclick="changePassword()">
+                                    <i class="fas fa-key me-2"></i>Change Password
+                                </button>
+                                <!-- New Reset Security Settings Button -->
+                                <button class="btn btn-outline-danger d-block" onclick="resetSecuritySettings()">
+                                    <i class="fas fa-undo-alt me-2"></i>Reset Security Settings
+                                </button>
+                            </div>
+
+                            <!-- Preferences Tab -->
+                            <div class="tab-pane fade" id="preferences" role="tabpanel">
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Language</label>
+                                    <select class="form-select" id="languagePreference">
+                                        <option value="en">English</option>
+                                        <option value="id">Bahasa Indonesia</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Email Notifications</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="emailNewsletter" checked>
+                                        <label class="form-check-label" for="emailNewsletter">Newsletter</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="emailPromotions" checked>
+                                        <label class="form-check-label" for="emailPromotions">Promotions</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editProfile()">
+                    <i class="fas fa-edit me-1"></i>Edit Profile
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this script section -->
+<script>
+function changePassword() {
+    Swal.fire({
+        title: 'Change Password',
+        html: `
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" id="currentPassword" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" id="newPassword" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" class="form-control">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Change Password',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+            const current = document.getElementById('currentPassword').value;
+            const newPass = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmNewPassword').value;
+
+            if (!current || !newPass || !confirm) {
+                Swal.showValidationMessage('All fields are required');
+                return false;
+            }
+
+            // Check if current password matches
+            const storedPassword = atob(localStorage.getItem('userPassword') || '');
+            if (current !== storedPassword) {
+                Swal.showValidationMessage('Current password is incorrect');
+                return false;
+            }
+
+            if (newPass !== confirm) {
+                Swal.showValidationMessage('New passwords do not match');
+                return false;
+            }
+
+            return { newPassword: newPass };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Save new password
+            localStorage.setItem('userPassword', btoa(result.value.newPassword));
+            Swal.fire({
+                icon: 'success',
+                title: 'Password Changed Successfully!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+}
+
+// Update the showProfile function to include new elements
+function showProfile() {
+    // Get user data from localStorage
+    const userData = {
+        name: localStorage.getItem('userName') || 'Guest User',
+        email: localStorage.getItem('userEmail') || 'No email set',
+        phone: localStorage.getItem('userPhone') || 'Not set',
+        memberSince: localStorage.getItem('memberSince') || new Date().toLocaleDateString(),
+        lastLogin: localStorage.getItem('lastLogin') || new Date().toLocaleString(),
+        profilePic: localStorage.getItem('profilePicture') || 'https://via.placeholder.com/150',
+        language: localStorage.getItem('language') || 'en'
+    };
+
+    // Update profile header
+    document.getElementById('profileName').textContent = userData.name;
+    document.getElementById('profileEmail').textContent = userData.email;
+    
+    // Update personal info inputs
+    document.getElementById('fullName').value = userData.name;
+    document.getElementById('profileEmailInput').value = userData.email;
+    document.getElementById('phoneNumber').value = userData.phone;
+    document.getElementById('memberSince').value = userData.memberSince;
+    
+    // Update other elements
+    document.getElementById('lastLogin').textContent = userData.lastLogin;
+    document.getElementById('profilePicture').src = userData.profilePic;
+    document.getElementById('languagePreference').value = userData.language;
+
+    // Get wishlist count
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    document.getElementById('wishlistCount').textContent = wishlist.length;
+
+    // Show the modal
+    const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+    profileModal.show();
+}
+
+// Add editProfile function
+function editProfile() {
+    // Remove readonly attribute to allow editing
+    document.getElementById('fullName').readOnly = false;
+    document.getElementById('phoneNumber').readOnly = false;
+    
+    // Change button to save
+    const editButton = document.querySelector('.modal-footer .btn-primary');
+    editButton.innerHTML = '<i class="fas fa-save me-1"></i>Save Changes';
+    editButton.onclick = saveProfile;
+}
+
+// Add saveProfile function
+function saveProfile() {
+    // Get updated values
+    const newName = document.getElementById('fullName').value;
+    const newPhone = document.getElementById('phoneNumber').value;
+    
+    // Save to localStorage
+    localStorage.setItem('userName', newName);
+    localStorage.setItem('userPhone', newPhone);
+    
+    // Make fields readonly again
+    document.getElementById('fullName').readOnly = true;
+    document.getElementById('phoneNumber').readOnly = true;
+    
+    // Update profile header
+    document.getElementById('profileName').textContent = newName;
+    
+    // Change button back to edit
+    const saveButton = document.querySelector('.modal-footer .btn-primary');
+    saveButton.innerHTML = '<i class="fas fa-edit me-1"></i>Edit Profile';
+    saveButton.onclick = editProfile;
+    
+    // Show success message
+    Swal.fire({
+        icon: 'success',
+        title: 'Profile Updated!',
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+// Add this JavaScript function
+function resetSecuritySettings() {
+    Swal.fire({
+        title: 'Reset Security Settings?',
+        text: 'This will reset your password and disable 2FA. You will need to set them up again.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, reset settings',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#dc3545',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Reset security settings
+            localStorage.setItem('twoFactorEnabled', 'false');
+            localStorage.removeItem('userPassword');
+            
+            // Update UI
+            document.getElementById('twoFactorAuth').checked = false;
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Security Settings Reset',
+                text: 'Please set up your password and security preferences again.',
+                showConfirmButton: true
+            }).then(() => {
+                // Optionally trigger password setup
+                changePassword();
+            });
+        }
+    });
+}
+</script>
+
+<!-- Update wishlist button functionality -->
+<script>
+function addToWishlist(productName, productImage) {
+    // Get existing wishlist from localStorage
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    
+    // Check if product already exists in wishlist
+    const existingProduct = wishlist.find(item => item.name === productName);
+    
+    if (existingProduct) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Already in Wishlist',
+            text: 'This product is already in your wishlist!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return;
+    }
+
+    // Add new product to wishlist
+    wishlist.push({
+        name: productName,
+        image: productImage,
+        dateAdded: new Date().toISOString()
+    });
+
+    // Save updated wishlist
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+    // Show success message
+    Swal.fire({
+        icon: 'success',
+        title: 'Added to Wishlist!',
+        text: `${productName} has been added to your wishlist`,
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+    // Update wishlist count in profile if visible
+    const wishlistCount = document.getElementById('wishlistCount');
+    if (wishlistCount) {
+        wishlistCount.textContent = wishlist.length;
+    }
+}
+
+// Add check for login before adding to wishlist
+function checkLoginAndAddToWishlist(productName, productImage) {
+    const isLoggedIn = localStorage.getItem('userName');
+    
+    if (!isLoggedIn) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Login Required',
+            text: 'Please login or sign up to add items to your wishlist',
+            showCancelButton: true,
+            confirmButtonText: 'Sign Up',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Show signup modal
+                const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+                signupModal.show();
+            }
+        });
+        return;
+    }
+
+    addToWishlist(productName, productImage);
+}
+</script>
+
+<!-- Tambahkan Hero Section yang dinamis di bawah navbar -->
+<div class="hero-section">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/path/to/hero1.jpg" class="d-block w-100" alt="Hero 1">
+                <div class="carousel-caption">
+                    <h1>Welcome to Azka Global</h1>
+                    <p>Discover Premium Products at Amazing Prices</p>
+                    <a href="#motorcycle" class="btn btn-primary btn-lg">Shop Now</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/path/to/hero2.jpg" class="d-block w-100" alt="Hero 2">
+                <div class="carousel-caption">
+                    <h1>New Arrivals</h1>
+                    <p>Check Out Our Latest Collection</p>
+                    <a href="#fashion" class="btn btn-primary btn-lg">Explore</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/path/to/hero3.jpg" class="d-block w-100" alt="Hero 3">
+                <div class="carousel-caption">
+                    <h1>Special Offers</h1>
+                    <p>Limited Time Deals on Premium Brands</p>
+                    <a href="#cars" class="btn btn-primary btn-lg">View Deals</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
+
+<!-- Tambahkan Featured Categories dengan animasi -->
+<div class="featured-categories container mt-5">
+    <h2 class="text-center mb-4">Featured Categories</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="category-card" onclick="location.href='#motorcycle'">
+                <div class="category-icon">
+                    <i class="fas fa-motorcycle"></i>
+                </div>
+                <h3>Motorcycles</h3>
+                <p>Premium Sports Bikes</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-card" onclick="location.href='#fashion'">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Fashion</h3>
+                <p>Trending Styles</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-card" onclick="location.href='#shoes'">
+                <div class="category-icon">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <h3>Shoes</h3>
+                <p>Premium Footwear</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="category-card" onclick="location.href='#cars'">
+                <div class="category-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3>Cars</h3>
+                <p>Luxury Vehicles</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tambahkan Loading Animation HTML -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
+
+<!-- Tambahkan Script untuk Loading Animation -->
+<script>
+window.addEventListener('load', function() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'none';
+});
+
+// Tambahkan animasi loading saat navigasi
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        loadingOverlay.style.display = 'flex';
+        
+        setTimeout(() => {
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            loadingOverlay.style.display = 'none';
+        }, 500);
+    });
+});
+</script>
+
+<!-- Tambahkan script untuk navbar scroll effect -->
+<script>
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Tambahkan animasi untuk card saat muncul
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    card.style.transition = 'all 0.6s ease-out';
+    observer.observe(card);
+});
+
+// Tambahkan efek hover 3D untuk card
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = -(x - centerX) / 10;
+        
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+});
+
+// Tambahkan loading animation untuk gambar
+document.querySelectorAll('.card-img-top').forEach(img => {
+    img.classList.add('loading');
+    img.onload = function() {
+        this.classList.remove('loading');
+    }
+});
+</script>
+
+<!-- Enhanced Footer Section -->
+<footer class="footer-section py-5 bg-dark text-white">
+    <div class="container">
+        <!-- Value Proposition Section -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="display-5 fw-bold">Why Choose Azka Global?</h2>
+                <p class="lead text-muted">Your Premium Destination for Luxury Products</p>
+            </div>
+        </div>
+
+        <!-- Key Features Grid -->
+        <div class="row g-4 mb-5">
+            <!-- Premium Quality -->
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center h-100 rounded" 
+                     style="background: linear-gradient(145deg, #2a2a2a, #333);">
+                    <i class="fas fa-gem fa-3x mb-3 text-primary"></i>
+                    <h3 class="h4 mb-3">Premium Quality</h3>
+                    <p class="mb-0">We partner exclusively with renowned brands to ensure you receive only authentic, high-quality products. Every item is verified for authenticity and excellence.</p>
+                </div>
+            </div>
+
+            <!-- Curated Selection -->
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center h-100 rounded"
+                     style="background: linear-gradient(145deg, #2a2a2a, #333);">
+                    <i class="fas fa-crown fa-3x mb-3 text-warning"></i>
+                    <h3 class="h4 mb-3">Curated Selection</h3>
+                    <p class="mb-0">Our expert team carefully selects each product, from luxury vehicles to premium fashion items, ensuring a collection that meets the highest standards of style and performance.</p>
+                </div>
+            </div>
+
+            <!-- Secure Shopping -->
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center h-100 rounded"
+                     style="background: linear-gradient(145deg, #2a2a2a, #333);">
+                    <i class="fas fa-shield-alt fa-3x mb-3 text-success"></i>
+                    <h3 class="h4 mb-3">Secure Shopping</h3>
+                    <p class="mb-0">Shop with confidence knowing your transactions are protected by state-of-the-art security measures and our satisfaction guarantee policy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Benefits -->
+        <div class="row g-4 mb-5">
+            <!-- Customer Service -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <i class="fas fa-headset fa-2x mb-3 text-info"></i>
+                    <h4 class="h5">24/7 Support</h4>
+                    <p class="small">Our dedicated team is always ready to assist you with any inquiries or concerns.</p>
+                </div>
+            </div>
+
+            <!-- Fast Delivery -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <i class="fas fa-shipping-fast fa-2x mb-3 text-danger"></i>
+                    <h4 class="h5">Express Delivery</h4>
+                    <p class="small">Swift and secure delivery services for all your premium purchases.</p>
+                </div>
+            </div>
+
+            <!-- Easy Returns -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <i class="fas fa-undo-alt fa-2x mb-3 text-success"></i>
+                    <h4 class="h5">Easy Returns</h4>
+                    <p class="small">Hassle-free return policy with full refund guarantee within 30 days.</p>
+                </div>
+            </div>
+
+            <!-- Exclusive Deals -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <i class="fas fa-tag fa-2x mb-3 text-warning"></i>
+                    <h4 class="h5">Exclusive Deals</h4>
+                    <p class="small">Regular promotions and member-only discounts on premium items.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Statement -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="p-4 rounded" style="background: linear-gradient(145deg, #2a2a2a, #333);">
+                    <h3 class="mb-3">Our Mission</h3>
+                    <p class="lead mb-0">
+                        At Azka Global, we're committed to providing an unparalleled shopping experience, 
+                        connecting our customers with the world's finest products. Our platform brings together 
+                        luxury vehicles, premium fashion, and exclusive items in one convenient destination.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact & Social Links -->
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h4 class="mb-3">Contact Us</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-phone me-2"></i> +62 821-7680-4064</li>
+                    <li><i class="fas fa-envelope me-2"></i> support@azkaglobal.com</li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i> Jakarta, Indonesia</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h4 class="mb-3">Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://wa.me/6282176804064" class="btn btn-outline-light me-2" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.facebook.com/iwan.irwanto.524" class="btn btn-outline-light me-2" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/iwan.irwanto.524/" class="btn btn-outline-light me-2" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h4 class="mb-3">Newsletter</h4>
+                <p class="small">Subscribe to receive updates about new products and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <hr class="mb-4" style="border-color: #444;">
+                <p class="mb-0">&copy; 2024 Azka Global. All Rights Reserved.</p>
+                <small class="text-muted">Connecting You with Premium Luxury Since 2024</small>
+            </div>
+        </div>
+    </div>
+</footer>
